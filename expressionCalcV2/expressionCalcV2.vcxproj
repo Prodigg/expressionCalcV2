@@ -128,12 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="evaluator.cpp" />
+    <ClCompile Include="expressionCalc.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="evaluator.h" />
+    <ClInclude Include="expressionCalc.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="validator.h" />
   </ItemGroup>

@@ -93,14 +93,14 @@ int validator_t::validateOperators(std::vector<token_t> tokens) {
 		}
 
 		if (token.getTokenType() == tokenType_t::BRAKET_OPEN) {
-			if (!isOpperator(tokens.at(i - 1).getTokenType()) || tokens.at(i + 1).getTokenType() != tokenType_t::NUMBER) {
+			if (!isOpperator(tokens.at(i - 1).getTokenType()) || isOpperator(tokens.at(i + 1).getTokenType())) {
 				_errorMsg = "unexpected parenthese.";
 				return i;
 			}
 		}
 
 		if (token.getTokenType() == tokenType_t::BRAKET_CLOSE) {
-			if (!isOpperator(tokens.at(i + 1).getTokenType()) || tokens.at(i - 1).getTokenType() != tokenType_t::NUMBER) {
+			if (!isOpperator(tokens.at(i + 1).getTokenType()) || isOpperator(tokens.at(i - 1).getTokenType())) {
 				_errorMsg = "unexpected parenthese.";
 				return i;
 			}

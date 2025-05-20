@@ -1,9 +1,20 @@
-#include "lexer.h"
-#include "evaluator.h"
-#include "validator.h"
+#include "expressionCalc.h"
+#include <iostream>
 int main() {
-	validator_t testValidator;
-	lexer_t lexer;
-	lexer.setExpression(")(-2.0 + 5.0) * -3.0").parseAndEval();
-	testValidator.validateParentheses(lexer.getTokens());
+	expressionCalc_t expressionCalc;
+	long double result = 0;
+	std::string userInput = "";
+	std::cout << "Welcome to the Expression Calcolator v2.\n";
+	while (true) {
+		std::cout << "\nEnter a Expresion to Evaluate: ";
+		std::getline(std::cin, userInput);
+		result = expressionCalc.calculate(userInput);
+
+		if (expressionCalc.getLastErrorPosition() != VALID_EXPRESSION)
+			std::cout << "\nThis expression contains an error:\n" << expressionCalc.getLastErrorMsg() << "\n At token: " << expressionCalc.getLastErrorPosition() << "\n";
+		else
+			std::cout << "The result is: " << result << "\n";
+
+	}
+	return 0;
 }

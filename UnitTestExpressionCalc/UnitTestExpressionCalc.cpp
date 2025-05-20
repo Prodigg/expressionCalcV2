@@ -10,6 +10,9 @@
 #include "..\expressionCalcV2\validator.h"
 #include "..\expressionCalcV2\validator.cpp"
 
+#include "..\expressionCalcV2\expressionCalc.h"
+#include "..\expressionCalcV2\expressionCalc.cpp"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace Microsoft {
@@ -247,6 +250,17 @@ namespace UnitTestExpressionCalc
 			lexer.clear().setExpression("(-2.0( + 5.0)) -3.0").parseAndEval();
 			Assert::AreEqual(2, testValidator.validateOperators(lexer.getTokens()));
 			
+		}
+	};
+
+	TEST_CLASS(expressionCalcUnitTest) {
+		TEST_METHOD(validExpressions) {
+			expressionCalc_t testExpressionCalc;
+			Assert::AreEqual(2.0, (double)testExpressionCalc.calculate("1 + 1"));
+			Assert::AreEqual(1.0, (double)testExpressionCalc.calculate("((((((1))))))"));
+			Assert::AreEqual(2.0, (double)testExpressionCalc.calculate("1 + 1"));
+			Assert::AreEqual(2.0, (double)testExpressionCalc.calculate("1 + 1"));
+			Assert::AreEqual(2.0, (double)testExpressionCalc.calculate("1 + 1"));
 		}
 	};
 }
