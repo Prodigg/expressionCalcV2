@@ -247,9 +247,11 @@ namespace UnitTestExpressionCalc
 			lexer.clear().setExpression("+(-2.0 + 5.0) * -3.0").parseAndEval();
 			Assert::AreEqual(0, testValidator.validateOperators(lexer.getTokens()));
 
-			lexer.clear().setExpression("(-2.0( + 5.0)) -3.0").parseAndEval();
+			lexer.clear().setExpression("(-2.0 + 5.0) -3.0").parseAndEval();
 			Assert::AreEqual(2, testValidator.validateOperators(lexer.getTokens()));
 			
+			lexer.clear().setExpression("((((((1))))))").parseAndEval();
+			Assert::AreEqual(2, testValidator.validateOperators(lexer.getTokens()));
 		}
 	};
 
